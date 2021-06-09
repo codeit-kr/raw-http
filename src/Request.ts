@@ -29,6 +29,10 @@ export class Request {
     let phase = ParsePhase.StartLine
     let currentLine: string | undefined
     while ((currentLine = lines.shift()) !== undefined) {
+      if (currentLine.trim().startsWith("#")) {
+        continue
+      }
+
       const nextLine: string | undefined = lines[0]
       switch (phase) {
         case ParsePhase.StartLine:
@@ -38,6 +42,7 @@ export class Request {
           } else if (nextLine.trim()) {
             phase = ParsePhase.Header
           } else {
+            lines.shift()
             phase = ParsePhase.Body
           }
           break;
