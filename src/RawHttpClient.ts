@@ -3,25 +3,27 @@ import { Request } from "./Request"
 import { Response } from "./Response"
 
 export class RawHttpClient {
-  private requests: Request[]
+  private rawRequestsText: string
 
   constructor(rawRequestsText: string) {
-    const rawRequests = rawRequestsText.split("###\n").map(r => r.trim())
-    this.requests = rawRequests.map(rawRequest => new Request(rawRequest))
+    this.rawRequestsText = rawRequestsText
   }
 
-  async execute() {
+  async requestAll() {
+    const rawRequests = this.rawRequestsText.split("###\n").map(r => r.trim())
+    const requests = rawRequests.map(rawRequest => Request.parse(rawRequest))
+
     const rawResponses = []
-    for (const request of this.requests) {
-      const response = await RawHttpClient.send(request)
-      const rawResponse = new Response(response)
+    for (const request of requests) {
+      const response = await this.request(request)
+      const rawResponse = Response.toRaw(response)
       rawResponses.push(rawResponse)
     }
   
     return rawResponses
   }
 
-  private static send(request: Request) {
+  private request(request: Request) {
     const { method, url, headers, body } = request
     return got(url, {
       method: method as Method,
@@ -30,4 +32,5 @@ export class RawHttpClient {
       resolveBodyOnly: false,
     })
   }
+
 }

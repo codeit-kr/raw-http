@@ -12,15 +12,14 @@ export class Request {
   headers: IncomingHttpHeaders
   body?: string
 
-  constructor(rawRequest: string) {
-    const { method, url, headers, body } = Request.parse(rawRequest)
+  constructor(properties: { [P in keyof Request]: Request[P] }) {
+    const { method, url, headers, body } = properties
     this.method = method
     this.url = url
     this.headers = headers
     this.body = body
   }
-
-  private static parse(rawRequest: string) {
+  static parse(rawRequest: string) {
     const lines = rawRequest.split('\n')
 
     let startLine: string = ""
@@ -70,7 +69,7 @@ export class Request {
       url = `${protocol}://${host}${url}`
     }
 
-    return { method, url, headers, body }
+    return new Request({ method, url, headers, body })
   }
 
 }
