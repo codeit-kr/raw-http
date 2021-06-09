@@ -11,7 +11,7 @@ export class RawHttpClient {
 
   async requestAll() {
     const rawRequests = this.rawRequestsText.split("###\n").map(r => r.trim())
-    const requests = rawRequests.map(rawRequest => Request.parse(rawRequest))
+    const requests = rawRequests.map(Request.parse)
 
     const rawResponses = []
     for (const request of requests) {
@@ -32,5 +32,4 @@ export class RawHttpClient {
       resolveBodyOnly: false,
     })
   }
-
 }
