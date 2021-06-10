@@ -1,12 +1,12 @@
 {
   "name": "@codeit-com/raw-http",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Send HTTP request and get response",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "dev": "ts-node src/index.ts",
-    "prepublish": "tsc"
+    "prepublish": "tsc -d"
   },
   "repository": {
     "type": "git",
