@@ -1,4 +1,4 @@
-# raw-http-request
+# raw-http
 
 Send HTTP request and get response.
 
@@ -11,7 +11,7 @@ Send HTTP request and get response.
 ## Install
 
 ```sh
-npm install @codeit-com/raw-http-request
+npm install @codeit-com/raw-http
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ npm install @codeit-com/raw-http-request
 Follow the standard [RFC2616](https://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html) that including request method, uri, headers, and body.
 
 ```js
-const { RawHttpClient } = require("@codeit-com/raw-http-client")
+const { RawHttpClient } = require("@codeit-com/raw-http")
 
 const httpRequest = `
 POST https://example.com/comments HTTP/1.1

@@ -1,11 +1,18 @@
 {
-  "name": "@codeit-com/raw-http-request",
+  "name": "@codeit-com/raw-http",
   "version": "0.1.0",
+  "description": "Send HTTP request and get response",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/index.ts",
+    "prepublish": "tsc"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codeit-kr/raw-http"
+  },
+  "keywords": ["http", "request", "raw"],
   "devDependencies": {
     "@types/node": "^15.12.2",
     "ts-node": "^10.0.0",
