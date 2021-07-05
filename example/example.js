@@ -1,4 +1,4 @@
-const { RawHttpClient } = require("../dist")
+const { RawHttpClient } = require("@codeit-com/raw-http")
 const fs = require("fs")
 const path = require("path")
 
