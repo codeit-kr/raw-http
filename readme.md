@@ -56,7 +56,11 @@ Create a RawHttpClient instance.
 
 #### Options
 
-- `beautify: boolean`: Beautify response body if it's JSON. Default is false.
+```ts
+{
+  beautify: boolean // Beautify response body if it's JSON. Default is false.
+}
+```
 
 ### `.requestAll(rawRequestsText: string): string[]`
 
