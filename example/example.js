@@ -1,4 +1,4 @@
-const { RawHttpClient } = require("@codeit-com/raw-http")
+const { RawHttpClient } = require("../dist")
 const fs = require("fs")
 const path = require("path")
 
@@ -17,4 +17,4 @@ if (firstArgument.startsWith("-")) {
   fileContent = process.argv[2]
 }
 
-new RawHttpClient().requestAll(fileContent).then(r => console.log(r[r.length - 1]))
+new RawHttpClient({ beautify: true }).requestAll(fileContent).then(r => console.log(r[r.length - 1]))
