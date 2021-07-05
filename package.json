@@ -1,6 +1,6 @@
 {
   "name": "@codeit-com/raw-http",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Send HTTP request and get response",
   "main": "dist/index.js",
   "license": "MIT",
