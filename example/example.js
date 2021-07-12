@@ -17,4 +17,6 @@ if (firstArgument.startsWith("-")) {
   fileContent = process.argv[2]
 }
 
-new RawHttpClient({ beautify: true }).requestAll(fileContent).then(r => console.log(r[r.length - 1]))
+new RawHttpClient({ beautify: true }).requestAll(fileContent).then(
+  r => console.log(r.join('\n'))
+)
