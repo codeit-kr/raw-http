@@ -18,5 +18,5 @@ if (firstArgument.startsWith("-")) {
 }
 
 new RawHttpClient({ beautify: true }).requestAll(fileContent).then(
-  r => console.log(r.join('\n'))
+  r => console.log(r.join('\n\n###\n\n'))
 )
