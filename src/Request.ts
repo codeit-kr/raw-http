@@ -20,7 +20,14 @@ export class Request {
     this.body = body
   }
   static parse(rawRequest: string) {
-    const lines = rawRequest.split('\n')
+    const lines = rawRequest
+      .split('\n')
+      .map(line => line.trim())
+      .filter(line => !line.startsWith("#"))
+
+    if (lines.length === 0) {
+      return null
+    }
 
     let startLine: string = ""
     const headersLines: string[] = []
@@ -54,7 +61,7 @@ export class Request {
             phase = ParsePhase.Body
           }
           break;
-      
+
         case ParsePhase.Body:
           bodyLines.push(currentLine)
           break;

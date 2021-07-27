@@ -15,8 +15,11 @@ export class RawHttpClient {
   }
 
   async requestAll(rawRequestsText: string) {
-    const rawRequests = rawRequestsText.split("###\n").map(r => r.trim())
-    const requests = rawRequests.map(Request.parse)
+    const rawRequests = rawRequestsText
+      .split(/^###.*$/m)
+      .map(r => r.trim())
+      .filter(r => r.length !== 0)
+    const requests = rawRequests.map(Request.parse).filter(this.notNull)
 
     const rawResponses = []
     for (const request of requests) {
@@ -24,8 +27,13 @@ export class RawHttpClient {
       const rawResponse = Response.toRaw(response, { beautify: this.options.beautify })
       rawResponses.push(rawResponse)
     }
-  
+
     return rawResponses
+  }
+
+  private notNull<T>(value: T | null | undefined): value is T {
+    if (value === null || value === undefined) return false;
+    return true;
   }
 
   private request(request: Request) {
